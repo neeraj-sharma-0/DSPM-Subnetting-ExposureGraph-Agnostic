@@ -1,0 +1,3 @@
+asset_id,name,data_type,sensitivity,subnet_id
+a1,pii-db,PII,Restricted,s1
+a2,logs-store,Logs,Internal,s2

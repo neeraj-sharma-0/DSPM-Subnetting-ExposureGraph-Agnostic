@@ -1,0 +1,107 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "id": "asset-000"
+    },
+    {
+      "id": "asset-001"
+    },
+    {
+      "id": "asset-002"
+    },
+    {
+      "id": "asset-003"
+    },
+    {
+      "id": "asset-004"
+    },
+    {
+      "id": "asset-005"
+    },
+    {
+      "id": "asset-006"
+    },
+    {
+      "id": "asset-007"
+    },
+    {
+      "id": "asset-008"
+    },
+    {
+      "id": "asset-009"
+    }
+  ],
+  "edges": [
+    {
+      "source": "asset-000",
+      "target": "asset-002"
+    },
+    {
+      "source": "asset-000",
+      "target": "asset-003"
+    },
+    {
+      "source": "asset-000",
+      "target": "asset-004"
+    },
+    {
+      "source": "asset-000",
+      "target": "asset-008"
+    },
+    {
+      "source": "asset-001",
+      "target": "asset-002"
+    },
+    {
+      "source": "asset-001",
+      "target": "asset-003"
+    },
+    {
+      "source": "asset-001",
+      "target": "asset-005"
+    },
+    {
+      "source": "asset-001",
+      "target": "asset-006"
+    },
+    {
+      "source": "asset-001",
+      "target": "asset-009"
+    },
+    {
+      "source": "asset-002",
+      "target": "asset-005"
+    },
+    {
+      "source": "asset-002",
+      "target": "asset-009"
+    },
+    {
+      "source": "asset-003",
+      "target": "asset-006"
+    },
+    {
+      "source": "asset-003",
+      "target": "asset-007"
+    },
+    {
+      "source": "asset-006",
+      "target": "asset-009"
+    },
+    {
+      "source": "asset-007",
+      "target": "asset-008"
+    },
+    {
+      "source": "asset-007",
+      "target": "asset-009"
+    },
+    {
+      "source": "asset-008",
+      "target": "asset-009"
+    }
+  ]
+}

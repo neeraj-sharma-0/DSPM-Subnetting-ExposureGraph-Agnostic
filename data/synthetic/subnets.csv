@@ -1,0 +1,3 @@
+subnet_id,name,cidr
+s1,data,10.0.0.0/24
+s2,analytics,10.0.1.0/24
