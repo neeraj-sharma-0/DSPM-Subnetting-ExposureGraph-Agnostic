@@ -1,82 +1,143 @@
-# DSPM for Data Exposure Topology — Subnetting and Blast Radius Analysis
+# DSPM for Exposure Graphs — Subnetting-Agnostic Lifecycle and Asset Risk Analysis
 
 ## Overview
 
-Implements a DSPM-driven approach to modeling **data exposure topology** using subnetting concepts.
+Implements a DSPM-inspired workflow to model **data exposure relationships using graph structures**, built in a Colab-first environment.
 
-Network segmentation is typically designed for infrastructure isolation, but **data exposure across segments is rarely quantified**. This repository models how sensitive data is distributed across subnets and how it can propagate through connectivity paths.
+This repository focuses on:
+- generating synthetic asset data
+- constructing an exposure graph
+- scoring assets based on connectivity and attributes
+- producing structured artifacts
+- archiving outputs with a lifecycle receipt
 
-The focus is on identifying **where sensitive data resides, how it is exposed, and the potential blast radius** across segmented environments.
+This is an **exposure graph and lifecycle modeling framework**, not a full network subnet/CIDR simulation or enforcement system.
 
 ---
 
 ## Core Objective
 
-> Model and analyze data exposure across subnet boundaries to quantify risk concentration and blast radius using DSPM principles.
+> Model asset-level exposure using graph relationships and apply a DSPM-style lifecycle to generate auditable outputs.
 
 ---
 
 ## What This Project Does
 
-Given a set of subnets and data assets, the system:
+Using a Colab notebook, the system:
 
-1. **Maps data to subnets**
-   - associates datasets with network segments
+1. **Generates synthetic assets**
+   - asset IDs
+   - basic attributes (e.g., type, exposure flags)
 
-2. **Classifies data**
-   - sensitivity levels
-   - PII and secrets
-   - ownership
+2. **Builds an exposure graph**
+   - nodes represent assets
+   - edges represent connectivity / exposure relationships
+   - implemented using NetworkX
 
-3. **Builds exposure topology**
-   - subnets as nodes  
-   - connectivity as edges  
-   - data assets attached to nodes  
+3. **Computes asset scores**
+   - based on graph connectivity and exposure characteristics
 
-4. **Analyzes blast radius**
-   - identifies propagation paths  
-   - computes reachability across segments  
+4. **Generates artifacts**
+   - CSV for asset scores
+   - JSON for graph structure
 
-5. **Computes risk metrics**
-   - exposure counts per subnet  
-   - severity distribution  
-   - connectivity-weighted risk  
+5. **Applies lifecycle stages**
+   - CREATE → MAINTAIN → AUDIT → DESTROY (archive)
 
-6. **Generates evidence artifacts**
-   - topology outputs  
-   - exposure reports  
-   - structured JSON and CSV artifacts  
+6. **Archives outputs**
+   - stores artifacts in a versioned archive
+   - generates an archive receipt
 
 ---
 
-## DSPM Lifecycle Coverage
+## DSPM Lifecycle Mapping
 
-| Stage    | Implementation                                       |
-|----------|------------------------------------------------------|
-| Discover | Data mapped to subnet segments                       |
-| Classify | Sensitivity, PII, secrets, owner                     |
-| Audit    | Exposure analysis and risk scoring                   |
-| Enforce  | Identification of high-risk segments (informational) |
-| Monitor  | Topology and exposure tracking                       |
+| Phase   | Implementation |
+|---------|----------------|
+| Create  | Synthetic asset generation |
+| Maintain| Graph construction and updates |
+| Audit   | Asset scoring and output generation |
+| Destroy | Archiving artifacts with receipt |
 
 ---
 
-## Exposure Model
+## Graph Model
 
 The system models:
 
-- **Subnets** → nodes  
-- **Connections** → edges  
-- **Data assets** → attached to nodes  
+- **Nodes** → assets  
+- **Edges** → exposure relationships  
 
-Risk is derived from:
-
-- number of sensitive records  
-- connectivity degree  
-- reachable paths (blast radius)  
+Analysis is limited to:
+- connectivity patterns  
+- simple exposure scoring  
 
 ---
 
-## Evidence Output
+## Generated Artifacts
 
-Artifacts written per run to:
+Per run, the following files are produced:
+
+- `scores_assets.csv` — asset-level scores  
+- `exposure_graph.json` — graph structure  
+
+Archived outputs include:
+
+- `archive_receipt.json` — metadata about archived artifacts  
+
+---
+
+## Execution Environment
+
+- Designed for **Google Colab**
+- No external dependencies beyond standard Python + NetworkX
+- Fully reproducible via notebook execution
+
+---
+
+## Example Run
+
+- assets generated: 50  
+- graph edges created: ~120  
+- scoring completed: yes  
+- artifacts generated:
+  - `scores_assets.csv`
+  - `exposure_graph.json`
+- archive created: yes  
+
+---
+
+## Scope and Limitations
+
+This repository:
+
+- does not implement real subnetting (CIDR / IP routing)  
+- does not map assets to actual network segments  
+- does not compute true blast radius  
+- does not include PII / sensitivity classification  
+- does not generate full DSPM evidence manifests  
+- does not delete artifacts (archive-only lifecycle)  
+
+Focus is limited to:
+
+- exposure graph modeling  
+- asset-level scoring  
+- lifecycle-based artifact generation and archiving  
+
+---
+
+## Why This Matters
+
+Graph-based modeling provides a way to understand how assets relate and potentially expose each other, even without full network context.
+
+This project demonstrates:
+
+- how exposure relationships can be represented  
+- how DSPM lifecycle concepts can be applied to generated data  
+- how to produce reproducible artifacts for analysis  
+
+---
+
+## One-Line Summary
+
+> Colab-based DSPM-style exposure graph framework using synthetic assets, NetworkX modeling, asset scoring, and archive-based lifecycle outputs.
