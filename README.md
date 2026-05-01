@@ -1,134 +1,82 @@
-# DSPM Subnetting ExposureGraph -- Lifecycle (Colab-First Edition)
+# DSPM for Data Exposure Topology — Subnetting and Blast Radius Analysis
 
 ## Overview
 
-This project implements a subnet-aware **Data Security Posture
-Management (DSPM)** model executed through a Colab-native notebook
-workflow.
+Implements a DSPM-driven approach to modeling **data exposure topology** using subnetting concepts.
 
-The repository contains a structured `src/` directory representing the
-packaged implementation.\
-The current public notebook executes in a Colab-first mode and does not
-require local installation of the package.
+Network segmentation is typically designed for infrastructure isolation, but **data exposure across segments is rarely quantified**. This repository models how sensitive data is distributed across subnets and how it can propagate through connectivity paths.
 
-This keeps the project:
+The focus is on identifying **where sensitive data resides, how it is exposed, and the potential blast radius** across segmented environments.
 
--   Easy to run
--   Reproducible in clean environments
--   Structured for future CLI packaging
+---
 
-------------------------------------------------------------------------
+## Core Objective
 
-# Repository Structure
+> Model and analyze data exposure across subnet boundaries to quantify risk concentration and blast radius using DSPM principles.
 
-    .
-    ├── DSPM_Subnetting_ExposureGraph_Lifecycle.ipynb
-    ├── requirements.txt
-    ├── src/
-    │   └── dspm_subnetting_exposuregraph/
-    │       └── ...
-    ├── out/ (generated artifacts)
+---
 
-The `src/` directory represents the modular implementation of:
+## What This Project Does
 
--   Exposure graph logic
--   Risk scoring engine
--   CLI entry points (future-ready)
--   Destroy workflow logic
+Given a set of subnets and data assets, the system:
 
-The notebook currently operates without requiring editable installs.
+1. **Maps data to subnets**
+   - associates datasets with network segments
 
-------------------------------------------------------------------------
+2. **Classifies data**
+   - sensitivity levels
+   - PII and secrets
+   - ownership
 
-# Lifecycle Model Implemented
+3. **Builds exposure topology**
+   - subnets as nodes  
+   - connectivity as edges  
+   - data assets attached to nodes  
 
-The operational lifecycle executed in the notebook is:
+4. **Analyzes blast radius**
+   - identifies propagation paths  
+   - computes reachability across segments  
 
-CREATE → MAINTAIN → AUDIT → DESTROY
+5. **Computes risk metrics**
+   - exposure counts per subnet  
+   - severity distribution  
+   - connectivity-weighted risk  
 
-## CREATE
+6. **Generates evidence artifacts**
+   - topology outputs  
+   - exposure reports  
+   - structured JSON and CSV artifacts  
 
--   Synthetic asset generation
--   CIDR-based subnet modeling
--   Exposure graph construction
--   Risk scoring artifact generation
+---
 
-## MAINTAIN
+## DSPM Lifecycle Coverage
 
--   Deterministic recomputation
--   Idempotent artifact regeneration
+| Stage    | Implementation                                       |
+|----------|------------------------------------------------------|
+| Discover | Data mapped to subnet segments                       |
+| Classify | Sensitivity, PII, secrets, owner                     |
+| Audit    | Exposure analysis and risk scoring                   |
+| Enforce  | Identification of high-risk segments (informational) |
+| Monitor  | Topology and exposure tracking                       |
 
-## AUDIT
+---
 
--   SHA256 hashing of generated artifacts
--   Evidence-ready output
+## Exposure Model
 
-## DESTROY
+The system models:
 
--   Controlled teardown of generated artifacts
--   Destroy receipt generation
--   Lifecycle closure validation
+- **Subnets** → nodes  
+- **Connections** → edges  
+- **Data assets** → attached to nodes  
 
-------------------------------------------------------------------------
+Risk is derived from:
 
-# Risk & Exposure Modeling
+- number of sensitive records  
+- connectivity degree  
+- reachable paths (blast radius)  
 
-The scoring engine produces:
+---
 
--   Asset-level risk scores
--   Subnet exposure relationships
--   Structured CSV + JSON artifacts
+## Evidence Output
 
-Exposure graph artifacts are generated in `out/`.
-
-------------------------------------------------------------------------
-
-# Why This Design
-
-This project intentionally separates:
-
--   Modular implementation (`src/`)
--   Execution harness (notebook)
--   Artifact outputs (`out/`)
-
-This mirrors production security pipelines where:
-
--   Core logic is modular
--   Execution is environment-specific
--   Artifacts are auditable
-
-------------------------------------------------------------------------
-
-# Technical Stack
-
--   Python 3.9+
--   pandas
--   networkx
--   Colab-compatible runtime
-
-Install:
-
-pip install -r requirements.txt
-
-------------------------------------------------------------------------
-
-# Intended Audience
-
--   DSPM Engineers
--   Cloud Security Engineers
--   Zero Trust Architects
--   DevSecOps Platform Engineers
-
-------------------------------------------------------------------------
-
-# Integrity Statement
-
-The notebook runs independently in Colab-first mode. The `src/`
-structure is included to demonstrate modular architecture and future CLI
-packaging alignment.
-
-No claims extend beyond implemented functionality.
-
-------------------------------------------------------------------------
-
-Author: Neeraj Sharma
+Artifacts written per run to:
